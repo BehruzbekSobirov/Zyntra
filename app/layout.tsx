@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { ToastContainer } from "@/components/toast-notification"
 import { AuthProvider } from "@/lib/auth-context"
+import { LanguageProvider } from "@/lib/language-context"
 import { AISupportChat } from "@/components/ai-support-chat"
 import "./globals.css"
 
@@ -32,11 +33,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <meta name="theme-color" content="#a855f7" />
       </head>
       <body className={`font-sans antialiased`}>
-        <AuthProvider>
-          {children}
-          <AISupportChat />
-          <ToastContainer />
-        </AuthProvider>
+        <LanguageProvider>
+          <AuthProvider>
+            {children}
+            <AISupportChat />
+            <ToastContainer />
+          </AuthProvider>
+        </LanguageProvider>
         <Analytics />
       </body>
     </html>

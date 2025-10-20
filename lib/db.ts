@@ -83,6 +83,7 @@ class MockDatabase {
   }
 
   private loadFromStorage() {
+    if (typeof window === "undefined") return
     try {
       const stored = localStorage.getItem("zyntra_db")
       if (stored) {
@@ -100,6 +101,7 @@ class MockDatabase {
   }
 
   private saveToStorage() {
+    if (typeof window === "undefined") return
     try {
       const data = {
         users: Array.from(this.users.entries()),

@@ -18,9 +18,11 @@ export function isAdminAuthenticated(): boolean {
 }
 
 export function setAdminToken(token: string): void {
+  if (typeof window === "undefined") return
   localStorage.setItem("admin_token", token)
 }
 
 export function clearAdminToken(): void {
+  if (typeof window === "undefined") return
   localStorage.removeItem("admin_token")
 }
